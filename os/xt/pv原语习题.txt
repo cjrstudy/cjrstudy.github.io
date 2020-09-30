@@ -1,0 +1,183 @@
+8  一个快餐厅有4类职员：（1）领班：接受顾客点菜；（2）厨师：准备顾客的饭菜；（3）打包工：将做好的饭菜打包；（4）出纳员：收款并提交食品。每个职员可被看作一个进程，试用一种同步机制写出能让四类职员正确并发运行的程序。
+  答：典型的进程同步问题，可设四个信号量S1、S2、S3 和S4来协调进程工作。
+    var   S1,S2,S3,S4:semaphore；
+          S1:=1；S2:=S3:=S4:=0；
+          cobegin
+           { process P1
+                begin
+                  repeat
+                  有顾客到来；
+                   P(S1)；
+                   接受顾客点菜；
+                   V(S2)；
+                   untile false；
+                 end
+              process P2
+                begin
+                  repeat
+                  P(S2)；
+                   准备顾客的饭菜；
+                  V(S3)；
+                    untile false；
+                  end
+              process P3
+                 begin
+                   repeat
+                    P(S3)；
+                       将做好的饭菜打包；
+                     V(S4)；
+                    untile false；
+                end
+               process P4
+                  begin
+                    repeat
+                    P(S4)；
+                    收款并提交食品；
+                     V(S1)；
+                     entile false；
+                    end
+                }
+               coend
+
+ 
+
+7  设公共汽车上，司机和售票员的活动分别如下：
+      司机的活动：启动车辆：正常行车：到站停车。
+      售票员的活动：关车门：售票：开车门。在汽车不断的到站、停车、行驶过程中，这两个活动有什么同步关系？用信号量和P、V操作实现它们的同步。
+
+ 答：在汽车行驶过程中，司机活动与售票员活动之间的同步关系为：售票员关门后，向司机发开车信号，司机接到开车信号后启动车辆，在汽车正常行驶过程中售票员售票，到站时司机停车，售票员在车停后开门让乘客上下车。因此，司机启动车辆的动作必须与售票员关门的动作取得同步：售票员开门的动作也必须与司机停车取得同步。应设置两个信号量：s1，s2；s1表示是否允许司机启动汽车（其初值为0）；s2表示是否允许售票员开门（其初值为0）。用P、V原语描述如下：
+       var s1,s2； semaphore；
+           s1=0； s2=0；
+           cobging
+          {
+             driver()；
+             busman()；
+           }
+             coend
+        
+          driver()
+              begin
+                 while(1)
+               {
+                 P(s1)
+                 启动车辆；
+                 正常运行；
+                 到站停车；
+                 V(s2)；
+                }
+              end
+           busman()
+               begin
+                  while(1)
+                     {
+                     关车门；
+                     V(s1)
+                     售票；
+                     P(s2)
+
+
+
+理发店理有一位理发师、一把理发椅和n把供等候理发的顾客坐的椅子，如果没有顾客，理发师便在理发椅上睡觉。一个顾客到来时，它必须叫醒理发师。如果理发师正在理发时又有顾客来到，则如果有空椅子可做，就坐下来等待，否则就离开。
+
+l        解决方法：
+
+引入3个信号量和一个控制变量：
+
+（1）控制变量waiting用来记录等候理发的顾客数，初值均为0;
+
+（2）信号量customers用来记录等候理发的顾客数，并用作阻塞理发师进程，初值为0;
+
+（3）信号量barbers用来记录正在等候顾客的理发师数，并用作阻塞顾客进程，初值为0;
+
+（4）信号量mutex用于互斥，初值为1.
+
+var waiting : integer;   
+
+CHAIRS:integer;    
+
+customers, barbers，mutex : semaphore;
+
+customers := 0; barbers := 0; waiting := 0; mutex := 1;
+
+Procedure barber;
+
+begin
+
+while(TRUE);               
+
+P(cutomers);             
+
+P(mutex);                
+
+waiting := waiting – 1;  
+
+V(barbers);              
+
+V(mutex);                
+
+cut-hair( );             
+
+end;
+
+procedure customer
+
+begin
+
+P(mutex);                
+
+if waiting     waiting := waiting+1; 
+
+V(customers);         
+
+V(mutex);             
+
+P(barbers);           
+
+get-haircut( );       
+
+end
+
+V(mutex);                
+
+end;
+
+
+
+理发师问题：
+理发店理有一位理发师、一把理发椅和n把供等候理发的顾客坐的椅子
+如果没有顾客，理发师便在理发椅上睡觉
+一个顾客到来时，它必须叫醒理发师
+如果理发师正在理发时又有顾客来到，则如果有空椅子可坐，就坐下来等待，否则就离开。
+解法：
+引入3个信号量和一个控制变量：
+1)控制变量waiting用来记录等候理发的顾客数，初值均为0;
+2)信号量customers用来记录等候理发的顾客数，并用作阻塞理发师进程，初值为0;
+3)信号量barbers用来记录正在等候顾客的理发师数，并用作阻塞顾客进程，初值为0;
+4)信号量mutex用于互斥，初值为1.
+var waiting : integer; /*等候理发的顾客数*/
+CHAIRS:integer; /*为顾客准备的椅子数*/
+customers, barbers，mutex : semaphore;
+waiting:=0;  CHAIRS:=n;
+customers := 0; barbers := 0; waiting := 0; mutex := 1;
+Procedure barber;
+begin
+while(TRUE); /*理完一人,还有顾客吗?*/
+P(cutomers); /*若无顾客,理发师睡眠*/
+P(mutex); /*进程互斥*/
+waiting := waiting – 1; /*等候顾客数少一个*/
+V(barbers); /*理发师去为一个顾客理发*/
+V(mutex); /*开放临界区*/
+cut-hair( ); /*正在理发*/
+end;
+procedure customer
+begin
+P(mutex); /*进程互斥*/
+if customers<n then
+waiting waiting := waiting+1; /* 等候顾客数加1*/
+V(customers); /*必要的话唤醒理发师*/
+V(mutex); /*开放临界区*/
+P(barbers); /*无理发师, 顾客坐着养神*/
+get-haircut( ); /*一个顾客坐下等理发*/
+else
+V(mutex); /*人满了,走吧!*/
+end;
