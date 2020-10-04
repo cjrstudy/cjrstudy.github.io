@@ -1,18 +1,19 @@
 #include<stdio.h>
 void main()
 {
-	int i,j,a;
-	while((i=fork())==-1);
-	if(i>0)
-		while((j=fork())==-1);
-	else 
-		for(a=1; a<=50; a++)
-			printf("son%d",a);
-	if(j>0)
-		for(a=1; a<=50; a++)
-			printf("father%d",a);
-	else
-		for(a=1; a<=50; a++)
-			printf("daughter%d",a);
-
+        int i,p1,p2;
+        while((p1=fork())==-1);
+        if(p1==0)
+                for(i=1; i<=50; i++)
+                        printf("son%d",i);
+        else
+        {   
+                while((p2=fork())==-1);
+                if(p2==0)
+                        for(i=1; i<=50; i++)
+                                printf("dauther%d",i);
+                else
+                        for(i=1; i<=50; i++)
+                                printf("father%d",i);
+        }   
 }
