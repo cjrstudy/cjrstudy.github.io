@@ -27,14 +27,14 @@ void main()
 	ListInitiate(&mylist);
 	for(i=0; i<10; i++)
 		ListInsert(&mylist, i, i+1);
-	printf("ÇëÊäÈëÄãÒªÉ¾³ýµÄÊý¾ÝÔªËØ:");
+	printf("è¯·è¾“å…¥ä½ è¦åˆ é™¤çš„æ•°æ®å…ƒç´ :");
 	scanf("%d",&x);
 	if(!ListDataDelete(&mylist, x))
-		printf("¸ÃË³Ðò±íÖÐÃ»ÓÐ%dÕâ¸öÔªËØ", x);
+		printf("è¯¥é¡ºåºè¡¨ä¸­æ²¡æœ‰%dè¿™ä¸ªå…ƒç´ ", x);
 	else
 	{
 
-		for(i=0; i<9; i++)
+		for(i=0; i<ListLength(mylist); i++)
 		{
 			ListGet(mylist, i, &y);
 			printf("%d   ",y);
