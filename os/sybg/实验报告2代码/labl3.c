@@ -2,7 +2,7 @@
 #include<pthread.h>
 void *ptest(void *arg)
 {
-        printf("This is the bew thread!");
+        printf("This is the new thread!");
         return(NULL);
 }
 main()
