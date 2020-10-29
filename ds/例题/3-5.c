@@ -7,16 +7,16 @@ void main()
 {
 	char ch = '0';
 	int tid = 0;
-	char *text = "´òÓ¡ÄÚÈİ";
+	char *text = "æ‰“å°å†…å®¹";
 	Queue Q;
 	InitaskManager(&Q);
 	while(ch != 'q')
 	{
-		printf("1 ¼ÓÈë");
-		printf("\t2 Íê³É");
-		printf("\t3 Êä³ö");
-		printf("\t4 Çå¿Õ");
-		printf("\tq ÍË³ö");
+		printf("1 åŠ å…¥");
+		printf("\t2 å®Œæˆ");
+		printf("\t3 è¾“å‡º");
+		printf("\t4 æ¸…ç©º");
+		printf("\tq é€€å‡º");
 		printf("\nPlease enter:");
 		ch = getchar();
 		getchar();
