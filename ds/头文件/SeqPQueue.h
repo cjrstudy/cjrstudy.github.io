@@ -1,4 +1,4 @@
-//Е╝ Д╧┴И≤÷Е┬≈Е┘┐Г╢═Г╩⌠Ф·└Д╫⌠
+//╤╗рЕ╤сапт╙кь╫А╧╧лЕ
 typedef struct
 {
 	int priority;
@@ -6,20 +6,20 @@ typedef struct
 }DataType;
 
 
-//Е╝ Д╧┴Д╪≤Е┘┬Г╨╖И≤÷Е┬≈Г╩⌠Ф·└Д╫⌠
+//╤╗рЕсеох╪╤╤сап╫А╧╧лЕ
 typedef struct
 {
 	DataType queue[MaxQueueSize];
 	int size;
 }SeqPQueue;
 
-//Е┬²Е╖▀Е▄√Д╪≤Е┘┬И≤÷Е┬≈
+//ЁУй╪╩╞сеох╤сап
 void QueueInitiate(SeqPQueue *Q)
 {
 	Q->size = 0;
 }
 
-//И²·Г╘╨Е░╕
+//╥г©у╥Я
 int QueueNoEmpty(SeqPQueue Q)
 {
 	if(Q.size <= 0)
@@ -28,12 +28,12 @@ int QueueNoEmpty(SeqPQueue Q)
 		return 1;
 }
 
-//Ф▐▓Е┘╔Ф∙╟Ф█╝Е┘┐Г╢═
+//╡ЕхКйЩ╬щт╙кь
 int QueueAppend(SeqPQueue *Q, DataType x)
 {
 	if(Q->size >= MaxQueueSize)
 	{
-		printf("И≤÷Е┬≈Е╥╡Ф╩║Ф≈═ФЁ∙Ф▐▓Е┘╔О╪│\n");
+		printf("╤сапрябЗнч╥╗╡ЕхКё║\n");
 		return 0;
 	}
 	else 
@@ -44,14 +44,14 @@ int QueueAppend(SeqPQueue *Q, DataType x)
 	}
 }
 
-//Е┬═И≥╓Ф∙╟Ф█╝Е┘┐Г╢═
+//и╬ЁЩйЩ╬щт╙кь
 int QueueDelete(SeqPQueue *Q, DataType *d)
 {
 	DataType min;
 	int minIndex, i;
 	if(Q->size <= 0)
 	{
-		printf("И≤÷Е┬≈Е╥╡Г╘╨Ф≈═Ф∙╟Ф█╝Е┘┐Г╢═Е┤╨И≤÷Е┬≈О╪│\n");
+		printf("╤сапря©унчйЩ╬щт╙кьЁЖ╤сапё║\n");
 		return 0;
 	}
 	else
@@ -72,14 +72,14 @@ int QueueDelete(SeqPQueue *Q, DataType *d)
 	}
 }
 
-//Е▐√Д╪≤Е┘┬И≤÷Е┬≈Д╦╜Д╪≤Е┘┬Г╨╖Ф°─И╚≤Г └Е┘┐Г╢═
+//х║сеох╤сапжпсеох╪╤вН╦ъ╣дт╙кь
 int QueueGet(SeqPQueue *Q, DataType *d)
 {
 	DataType min;
 	int minIndex,i;
 	if(Q->size <= 0)
 	{
-		printf("И≤÷Е┬≈Е╥╡Г╘╨Ф≈═Ф∙╟Ф█╝Е┘┐Г╢═Е▐╞Е▐√О╪│\n");
+		printf("╤сапря©унчйЩ╬щт╙кь©их║ё║\n");
 		return 0;
 	}
 	else
