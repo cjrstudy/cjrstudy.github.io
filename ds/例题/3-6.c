@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MaxQueueSize 100
@@ -12,7 +13,7 @@ void main()
 	int i;
 	if((fp = fopen("task.dat","r")) == NULL)
 	{
-		printf("涓嶈兘鎵撳紑鏂囦欢task.dat!");
+		printf("不能打开文件task.dat!");
 		exit(0);
 	}
 	QueueInitiate(&myPQueue);
@@ -22,7 +23,7 @@ void main()
 		QueueAppend(&myPQueue, task);
 	}
 	i = 1;
-	printf("搴忓彿\t浠诲姟鍙穃t浼樺厛绾n");
+	printf("序号\t任务号\t优先级\n");
 	while(QueueNoEmpty(myPQueue))
 	{
 		QueueDelete(&myPQueue, &task);

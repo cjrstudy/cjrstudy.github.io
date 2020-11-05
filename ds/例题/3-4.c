@@ -1,3 +1,4 @@
+  
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -29,7 +30,7 @@ int PostExp(char str[])
 				case '/': 
 					if(x2 == 0)
 					{
-						printf("é™¤æ•°ä¸º0é”™ï¼\n");
+						printf("³ıÊıÎª0´í£¡\n");
 						exit(0);
 					}
 					else
@@ -50,9 +51,5 @@ void main()
 	char str[] = "3642/-5*+#";
 	int result;
 	result = PostExp(str);
-	printf("åç¼€ç®—æœ¯è¡¨è¾¾å¼è®¡ç®—ç»“æœä¸ºï¼š%d", result);
+	printf("ºó×ºËãÊõ±í´ïÊ½¼ÆËã½á¹ûÎª£º%d", result);
 }
-
-
-
-
