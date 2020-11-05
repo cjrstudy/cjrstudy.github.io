@@ -1,18 +1,18 @@
-//å®šä¹‰
+//¶¨Òå
 typedef struct snode
 {
 	DataType data;
 	struct snode *next;
 } LSNode;
 
-//åˆå§‹åŒ–
+//³õÊ¼»¯
 void StackInitiate(LSNode **head)
 {
 	*head = (LSNode *)malloc(sizeof(LSNode));
 	(*head)->next = NULL;
 }
 
-//éç©ºå¦
+//·Ç¿Õ·ñ
 int StackNotEmpty(LSNode *head)
 {
 	if(head->next == NULL)
@@ -21,7 +21,7 @@ int StackNotEmpty(LSNode *head)
 		return 1;
 }
 
-//å…¥æ ˆ
+//ÈëÕ»
 void StackPush(LSNode *head, DataType x)
 {
 	LSNode *p;
@@ -31,13 +31,13 @@ void StackPush(LSNode *head, DataType x)
 	head->next = p;
 }
 
-//å‡ºæ ˆ
+//³öÕ»
 int StackPop(LSNode *head, DataType *d)
 {
 	LSNode *p = head->next;
 	if(p == NULL)
 	{
-		printf("å †æ ˆå·²ç©ºå‡ºé”™ï¼");
+		printf("¶ÑÕ»ÒÑ¿Õ³ö´í£¡");
 		return 0;
 	}
 	head->next = p->next;
@@ -46,13 +46,13 @@ int StackPop(LSNode *head, DataType *d)
 	return 1;
 }
 
-//å–æ ˆé¡¶å…ƒç´ 
+//È¡Õ»¶¥ÔªËØ
 int StackTop(LSNode *head, DataType *d)
 {
 	LSNode *p = head->next;
 	if(p == NULL)
 	{
-		printf("å †æ ˆå·²ç©ºå‡ºé”™ï¼");
+		printf("¶ÑÕ»ÒÑ¿Õ³ö´í£¡");
 		return 0;
 	}
 	*d = p->data;
@@ -60,7 +60,7 @@ int StackTop(LSNode *head, DataType *d)
 }
 
 
-//æ’¤é”€åŠ¨æ€ç”³è¯·ç©ºé—´
+//³·Ïú¶¯Ì¬ÉêÇë¿Õ¼ä
 void Destroy(LSNode *head)
 {
 	LSNode *p, *p1;
