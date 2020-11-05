@@ -72,4 +72,3 @@ void Destroy(LSNode *head)
 		free(p1);
 	}
 }
-
