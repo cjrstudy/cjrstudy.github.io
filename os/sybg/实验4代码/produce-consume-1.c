@@ -1,8 +1,8 @@
-/*ç”¨çº¿ç¨‹çš„åŒæ­¥å’Œäº’æ–¥æ¥å®ç°"ç”Ÿäº§è€…-æ¶ˆè´¹è€…"é—®é¢˜.*/
+/*ÓÃÏß³ÌµÄÍ¬²½ºÍ»¥³âÀ´ÊµÏÖ"Éú²úÕß-Ïû·ÑÕß"ÎÊÌâ.*/
 /*
-* å¤šç”Ÿäº§è€…å¤šæ¶ˆè´¹è€…å¤šç¼“å†²åŒº ç”Ÿäº§è€…å’Œæ¶ˆè´¹è€…ä¸å¯åŒæ—¶è¿›è¡Œ
-* ç¼–è¯‘ï¼šgcc -o produce-consume-1 produce-consume-1.c -lpthread
-* è¿è¡Œï¼š./produce-consume-1
+* ¶àÉú²úÕß¶àÏû·ÑÕß¶à»º³åÇø Éú²úÕßºÍÏû·ÑÕß²»¿ÉÍ¬Ê±½øĞĞ
+* ±àÒë£ºgcc -o produce-consume-1 produce-consume-1.c -lpthread
+* ÔËĞĞ£º./produce-consume-1
 */
 
 #include <stdio.h>
@@ -12,17 +12,17 @@
 #include <semaphore.h>
 #include <time.h>
 
-//ç”Ÿäº§è€…
+//Éú²úÕß
 void *product(void *arg)
 {
-printf("This is the ç”Ÿäº§è€… thread!\n" );
+printf("This is the Éú²úÕß thread!\n" );
     return(NULL);
 }
 
-//æ¶ˆè´¹è€…
+//Ïû·ÑÕß
 void *consumer(void *arg)
 {
-printf("This is the æ¶ˆè´¹è€… thread!\n" );
+printf("This is the Ïû·ÑÕß thread!\n" );
     return(NULL);
 }
 
@@ -31,10 +31,10 @@ main()
     pthread_t tid_product, tid_consumer;
     printf(" This is the parent process !\n" );
     
-    printf("createç”Ÿäº§è€…\n");
+    printf("createÉú²úÕß\n");
     pthread_create(&tid_product,NULL,product,NULL);
 
-    printf("createæ¶ˆè´¹è€…\n");
+    printf("createÏû·ÑÕß\n");
     pthread_create(&tid_consumer,NULL,consumer,NULL);
 
     sleep(1);
