@@ -10,29 +10,29 @@ void main()
 	Initiate(&myString1, max1, "Data");
 	Initiate(&myString2, max2, "Structure");
 	Initiate(&myString3, max3, " ");
-	printf("初始myString2串:			");
-	for(i = 0; i < myString2.lenth; i++)
+	printf("初始myString2串:	");
+	for(i = 0; i < myString2.length; i++)
 		printf("%c", myString2.str[i]);
 	printf("	maxLength = %d", myString2.maxLength);
-	printf("	lenth = %d\n", myString2.lenth);
+	printf("	length = %d\n", myString2.length);
 	Insert(&myString2, 0, myString1);
-	printf("插入子串后myString2串:	\n");
-	for(i = 0; i < myString2.lenth; i++)
+	printf("插入子串后myString2串:	");
+	for(i = 0; i < myString2.length; i++)
 		printf("%c", myString2.str[i]);
 	printf("	maxLength = %d", myString2.maxLength);
-	printf("	lenth = %d\n", myString2.lenth);
+	printf("	length = %d\n", myString2.length);
 	Delete(&myString2, 0, 5);
-	printf("删除子串后myString2串:	\n");
-	for(i = 0; i < myString2.lenth; i++)
+	printf("删除子串后myString2串:	");
+	for(i = 0; i < myString2.length; i++)
 		printf("%c", myString2.str[i]);
 	printf("	maxLength = %d", myString2.maxLength);
-	printf("	lenth = %d\n", myString2.lenth);
+	printf("	length = %d\n", myString2.length);
 	SubString(&myString2, 0, 5, &myString3);
-	printf("取子串后myString3串:		\n");
-	for(i = 0; i < myString3.lenth; i++)
+	printf("取子串后myString3串:	");
+	for(i = 0; i < myString3.length; i++)
 		printf("%c", myString3.str[i]);
-	printf("	maxLength = %d", myString3.maxLength);
-	printf("	lenth = %d\n", myString3.lenth);
+	printf("		maxLength = %d", myString3.maxLength);
+	printf("	length = %d\n", myString3.length);
 	Destroy(&myString1);
 	Destroy(&myString2);
 	Destroy(&myString3);
