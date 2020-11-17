@@ -11,7 +11,7 @@
 // 定义信号量：5支筷子
 sem_t chopstick[5];
 
-int a = 0;
+int a = 0; //定义全局变量
 
 // 哲学家线程
 void *philosopher(void *arg)
@@ -39,12 +39,8 @@ void *philosopher(void *arg)
 			sem_post(&chopstick[id % 5]);
 			// 放下右边的筷子
 			sem_post(&chopstick[(id + 1) % 5]);
-
 		}
-
-		
 	}
-
 }
 
 void main()
