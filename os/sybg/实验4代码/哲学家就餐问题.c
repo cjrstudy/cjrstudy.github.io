@@ -1,42 +1,44 @@
 /*
-	ĞÅºÅÁ¿£º¿ê×Ó
-	Ïß³Ì£ºÕÜÑ§¼Ò
+	åŸç†ï¼šä»…å½“å“²å­¦å®¶çš„å·¦å³ä¸¤æ”¯ç­·å­éƒ½å¯ç”¨æ—¶ï¼Œæ‰å…è®¸ä»–æ‹¿èµ·ç­·å­è¿›é¤ã€‚
+	ä¿¡å·é‡ï¼šç­·å­
+	çº¿ç¨‹ï¼šå“²å­¦å®¶
 */
 
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
 
-// ¶¨ÒåĞÅºÅÁ¿£º5Ö§¿ê×Ó
+// å®šä¹‰ä¿¡å·é‡ï¼š5æ”¯ç­·å­
 sem_t chopstick[5];
 
-int a = 0;	// Ê¹×ó±ß¿ê×ÓµÄ±àºÅÎª1~5
-int count = 0;
+int a = 0;// ä½¿å·¦è¾¹ç­·å­çš„ç¼–å·ä¸º1~5
 
-// ÕÜÑ§¼ÒÏß³Ì
+// å“²å­¦å®¶çº¿ç¨‹
 void *philosopher(void *arg)
 {
-	int id = ++a;	// ×ó±ß¿ê×ÓµÄ±àºÅ£¬ÕÜÑ§¼Ò±àºÅ
+	int id = ++a;	// å·¦è¾¹ç­·å­çš„ç¼–å·ï¼Œå“²å­¦å®¶ç¼–å·
 	int left, right;
 
 	while(1)
 	{
 		sleep(1);
-		sem_getvalue(&chopstick[id], &left);			//»ñÈ¡×ó±ßĞÅºÅÁ¿µÄÖµ
-		sem_getvalue(&chopstick[(id + 1) % 5], &right);	//»ñÈ¡ÓÒ±ßĞÅºÅÁ¿µÄÖµ
+		sem_getvalue(&chopstick[id], &left);		//è·å–å·¦è¾¹ä¿¡å·é‡çš„å€¼ï¼Œå¹¶èµ‹ç»™left
+		sem_getvalue(&chopstick[(id + 1) % 5], &right);	//è·å–å³è¾¹ä¿¡å·é‡çš„å€¼ï¼Œå¹¶èµ‹ç»™right
 
-		  // ×ó±ßÓĞ¿ê×Ó	  ÓÒ±ßÓĞ¿ê×Ó
+		  // å·¦è¾¹æœ‰ç­·å­	å³è¾¹æœ‰ç­·å­
 		if(left == 1 && right == 1)
 		{
+			//æ‹¿èµ·å·¦è¾¹çš„ç­·å­
 			sem_wait(&chopstick[id]);
+			//æ‹¿èµ·å³è¾¹çš„ç­·å­
 			sem_wait(&chopstick[(id + 1) % 5]);
 
-			// ³Ô·¹
-			printf("%dºÅÕÜÑ§¼ÒÕıÔÚ¾Í²Í\n", id);
+			// åƒé¥­
+			printf("%då·å“²å­¦å®¶æ­£åœ¨å°±é¤\n", id);
 		
-			// ·ÅÏÂ×ó±ßµÄ¿ê×Ó
+			// æ”¾ä¸‹å·¦è¾¹çš„ç­·å­
 			sem_post(&chopstick[id]);
-			// ·ÅÏÂÓÒ±ßµÄ¿ê×Ó
+			// æ”¾ä¸‹å³è¾¹çš„ç­·å­
 			sem_post(&chopstick[(id + 1) % 5]);
 
 		}
@@ -50,21 +52,19 @@ void main()
 {
 	int i;
 
-	//³õÊ¼»¯ĞÅºÅÁ¿
+	//åˆå§‹åŒ–ä¿¡å·é‡
 	for(i = 0; i < 5; i++)
 		sem_init(&chopstick[i], 0, 1);
 
+	//å£°æ˜çº¿ç¨‹ID
 	pthread_t philosopher_tid[5];
 
-	//´´½¨5¸öÕÜÑ§¼ÒÏß³Ì
+	//åˆ›å»º5ä¸ªå“²å­¦å®¶çº¿ç¨‹
 	for(i = 0; i < 5; i++)
 		pthread_create(&philosopher_tid[i], NULL, philosopher, NULL);
 
-
-	//Ïú»ÙÏß³Ì
+	//é”€æ¯çº¿ç¨‹
 	for(i = 0; i < 5; i++)
 		pthread_join(philosopher_tid[i], NULL);
-
-
 	
 }
