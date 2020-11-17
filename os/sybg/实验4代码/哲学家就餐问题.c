@@ -21,7 +21,7 @@ void *philosopher(void *arg)
 	while(1)
 	{
 		sleep(1);
-		sem_getvalue(&chopstick[id % 5], &left);		//获取左边信号量的值，并赋给left
+		sem_getvalue(&chopstick[id % 5], &left);	//获取左边信号量的值，并赋给left
 		sem_getvalue(&chopstick[(id + 1) % 5], &right);	//获取右边信号量的值，并赋给right
 
 		  // 左边有筷子	右边有筷子

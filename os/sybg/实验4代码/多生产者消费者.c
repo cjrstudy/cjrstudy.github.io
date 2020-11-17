@@ -25,8 +25,8 @@ void *producer(void *arg)
 	while(1)
 	{
 		sleep(1);
-		pthread_mutex_lock(&mutex);		// 加上互斥锁
 		sem_wait(&empty_sem);	// 相当于P原语，调用该方法时，信号量empty_sem自动减1，如果empty_sem<0，线程则发生等待。
+		pthread_mutex_lock(&mutex);		// 加上互斥锁
 		in = in % M;  // 为了能够循环访问缓冲区：当访问了最后一个位值后，会回到第一个位置
 		producer_num++;	// 生产的产品数量加1
 		M_num++;	// 生产之后将产品放入缓冲区，缓冲区的产品数量加1
@@ -45,8 +45,8 @@ void *consumer(void *arg)
 	while(1)
 	{
 		sleep(1);
-		pthread_mutex_lock(&mutex);
 		sem_wait(&full_sem);
+		pthread_mutex_lock(&mutex);
 		out = out % M;
 		consumer_num++;
 		M_num--;	//从缓冲区消费之后，缓冲区的产品数量减1
